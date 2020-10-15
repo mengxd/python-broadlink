@@ -1,11 +1,12 @@
-Python control for Broadlink RM2 IR controllers
+Python control for Broadlink RM2, RM3 and RM4 series controllers
 ===============================================
 
-A simple Python API for controlling IR controllers from [Broadlink](http://www.ibroadlink.com/rm/). At present, the following devices are currently supported:
+A simple Python API for controlling IR/RF controllers from [Broadlink](http://www.ibroadlink.com/rm/). At present, the following devices are currently supported:
 
 * RM Pro (referred to as RM2 in the codebase)
 * A1 sensor platform devices are supported
 * RM3 mini IR blaster
+* RM4 and RM4C mini blasters
 
 There is currently no support for the cloud API.
 
@@ -43,6 +44,27 @@ Enter learning mode:
 devices[0].enter_learning()
 ```
 
+Sweep RF frequencies:
+```
+devices[0].sweep_frequency()
+```
+
+Cancel sweep RF frequencies:
+```
+devices[0].cancel_sweep_frequency()
+```
+Check whether a frequency has been found:
+```
+found = devices[0].check_frequency()
+```
+(This will return True if the RM has locked onto a frequency, False otherwise)
+
+Attempt to learn an RF packet:
+```
+found = devices[0].find_rf_packet()
+```
+(This will return True if a packet has been found, False otherwise)
+
 Obtain an IR or RF packet while in learning mode:
 ```
 ir_packet = devices[0].check_data()
@@ -72,6 +94,11 @@ devices[0].set_power(True)
 Check power state on a SmartPlug:
 ```
 state = devices[0].check_power()
+```
+
+Check energy consumption on a SmartPlug:
+```
+state = devices[0].get_energy()
 ```
 
 Set power state for S1 on a SmartPowerStrip MP1:

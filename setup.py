@@ -1,31 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import re
+
 from setuptools import setup, find_packages
-import sys
-import warnings
 
-try:
-    import pyaes
-    dynamic_requires = ["pyaes==1.6.0"]
-except ImportError as e:
-    dynamic_requires = ['pycryptodome==3.4.11']
 
-# For Hysen thermostatic heating controller
-dynamic_requires.append('PyCRC')
-
-version = 0.8
+version = '0.15.0'
 
 setup(
     name='broadlink',
-    version=0.8,
+    version=version,
     author='Matthew Garrett',
     author_email='mjg59@srcf.ucam.org',
     url='http://github.com/mjg59/python-broadlink',
     packages=find_packages(),
     scripts=[],
-    install_requires=dynamic_requires,
+    install_requires=['cryptography>=2.1.1'],
     description='Python API for controlling Broadlink IR controllers',
     classifiers=[
         'Development Status :: 4 - Beta',
